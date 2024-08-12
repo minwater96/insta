@@ -11,13 +11,17 @@
                     <h4>{{user_info.username}}</h4>
                 </div>
                 <div class="col-9">
-                    <button class="btn btn-primary">팔로우</button>
+                    {% if user in user_info.followers.all %}
+                    <a href="{% url 'accounts:follow' username=user_info.username %}" class="btn btn-secondary">팔로우 취소</a>
+                    {% else %}
+                    <a href="{% url 'accounts:follow' username=user_info.username %}" class="btn btn-primary">팔로우</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="row">
-                <div class="col-4">게시물 : </div>
-                <div class="col-4">팔로워 : </div>
-                <div class="col-4">팔로우 : </div>
+                <div class="col-4">게시물 : {{user_info.post_set.all|length}}</div>
+                <div class="col-4">팔로워 : {{user.info.followers.all|length}}</div>
+                <div class="col-4">팔로우 : {{user_info.followings.all|length}}</div>
             </div>
         </div>
     </div>
