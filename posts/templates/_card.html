@@ -9,7 +9,7 @@
     <img src="{{post.image.url}}" class="card-img-top" alt="...">
     <div class="card-body">
       <div>
-      <a href="{% url 'posts:like' post_id=post.id }" class="text-reset text-decoration-none">
+      <a href="{% url 'posts:like' post_id=post.id %}" class="text-reset text-decoration-none">
         {% if user in post.like_users.all %}
         <i class="bi bi-heart-fill" style="color:red;"></i>
         {% else %}

@@ -39,7 +39,7 @@ def logout(request):
     auth_logout(request)
     return redirect('posts:index')
 
-def profile(redirect, username):
+def profile(request, username):
     user_info = User.objects.get(username=username)
 
     context = {
@@ -52,7 +52,7 @@ def follow(request, username):
     me = request.user
     you = User.objects.get(username=username)
 
-    if me in you.followers.all: #if you in me.followings.all(): 같은역할
+    if me in you.followers.all(): #if you in me.followings.all(): 같은역할
         you.followers.remove(me)
         #me.followings.remove(you)
     else:
