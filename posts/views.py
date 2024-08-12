@@ -42,6 +42,7 @@ def comment_create(request, post_id):
     if form.is_valid():
         comment = form.save(commit=False)
         comment.user = request.user
+        comment.post_id = post_id
         comment.save()
 
         return redirect('posts:index')

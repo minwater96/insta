@@ -19,7 +19,13 @@
             <input type="submit" class="btn btn-primary">
           </div>
         </div>
-       
       </form>
+
+      {% for comment in post.comment_set.all %}
+        <li>
+          {{comment.user}} : {{comment.content}}
+        </li>
+      {% endfor %}
+
     </div>
   </div>
