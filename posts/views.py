@@ -60,3 +60,24 @@ def like(request, post_id):
         post.like_users.add(user) #post.like_users.add(user) 같은효과
 
     return redirect('posts:index')
+
+from django.http import JsonResponse
+
+def like_async(request, post_id):
+    user = request.user
+    post = Post.objects.get(id=post_id)
+
+    if user in post.like_users.all():
+        post.like_users.remove(user)
+        status = False
+    else:
+        post.like_users.add(user)
+        status = True
+
+    context = {
+        'post_id': post_id,
+        'status': status,
+        'count': len(post.like_users.all())
+    }
+
+    return JsonResponse(context)
